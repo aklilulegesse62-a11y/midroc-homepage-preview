@@ -1,0 +1,194 @@
+const toggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.main-nav');
+
+if (toggle && nav) {
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+  });
+
+  nav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation');
+    });
+  });
+}
+
+document.querySelectorAll('[data-news-carousel]').forEach((carousel) => {
+  const panels = Array.from(carousel.querySelectorAll('.news-panel'));
+  const count = document.querySelector('[data-news-count]');
+  const previous = document.querySelector('[data-news-prev]');
+  const next = document.querySelector('[data-news-next]');
+  let activeIndex = Math.max(0, panels.findIndex((panel) => panel.classList.contains('is-active')));
+
+  const activate = (index, bringIntoView = false) => {
+    activeIndex = (index + panels.length) % panels.length;
+    panels.forEach((panel, panelIndex) => {
+      const active = panelIndex === activeIndex;
+      panel.classList.toggle('is-active', active);
+      panel.querySelector('.news-panel-select')?.setAttribute('aria-expanded', String(active));
+    });
+    if (count) count.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(panels.length).padStart(2, '0')}`;
+    if (bringIntoView && window.matchMedia('(max-width: 680px)').matches) {
+      panels[activeIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  };
+
+  panels.forEach((panel, index) => {
+    panel.querySelector('.news-panel-select')?.addEventListener('click', () => activate(index, true));
+  });
+  previous?.addEventListener('click', () => activate(activeIndex - 1, true));
+  next?.addEventListener('click', () => activate(activeIndex + 1, true));
+  activate(activeIndex);
+});
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const revealGroups = [
+  '.hero-content > *',
+  '.intro-strip > *',
+  '.clusters .section-heading > *',
+  '#clusters .cluster-card > svg, #clusters .cluster-card > strong',
+  '.stats-row > div',
+  '.about-band-copy > *',
+  '.about-band-photo',
+  '.news-masthead > *',
+  '.news-carousel-footer > *',
+  '.governance-top > *',
+  '.principle-card',
+  '.contact-cta > :not(.cta-ornament)',
+  '.page-reveal'
+];
+
+if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+  document.querySelectorAll(revealGroups.join(',')).forEach((element) => element.classList.add('is-visible'));
+} else {
+  revealGroups.forEach((selector) => {
+    document.querySelectorAll(selector).forEach((element, index) => {
+      element.classList.add('motion-reveal');
+      element.style.setProperty('--motion-delay', `${Math.min(index * 75, 360)}ms`);
+    });
+  });
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -45px 0px' });
+
+  document.querySelectorAll('.motion-reveal').forEach((element) => revealObserver.observe(element));
+
+  const countTargets = Array.from(document.querySelectorAll('[data-count]'));
+  const animateCount = (element) => {
+    if (element.dataset.countStarted) return;
+    element.dataset.countStarted = 'true';
+    const endValue = Number(element.dataset.count);
+    const suffix = element.dataset.suffix || '';
+    const startTime = performance.now();
+    const duration = 1500;
+    const formatter = new Intl.NumberFormat('en-US');
+
+    const frame = (now) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      element.textContent = `${formatter.format(Math.round(endValue * eased))}${suffix}`;
+      if (progress < 1) requestAnimationFrame(frame);
+    };
+
+    element.textContent = `0${suffix}`;
+    requestAnimationFrame(frame);
+  };
+
+  if (countTargets.length) {
+    const countObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          countTargets.forEach(animateCount);
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.35 });
+    countObserver.observe(countTargets[0].closest('.stats-row') || countTargets[0]);
+  }
+
+  const parallaxTargets = [
+    { selector: '.hero-image', speed: 0.12, limit: 26 },
+    { selector: '.about-band-photo img', speed: 0.065, limit: 17 },
+    { selector: '.career-slice', speed: 0.04, limit: 10 },
+    { selector: '.news-panel>img', speed: 0.045, limit: 13 },
+    { selector: '.business-cluster-image img', speed: 0.04, limit: 12 },
+    { selector: '.principal-image img', speed: 0.035, limit: 10 },
+    { selector: '.community-masthead-photo img', speed: 0.04, limit: 12 }
+  ].flatMap(({ selector, speed, limit }) => Array.from(document.querySelectorAll(selector), (element) => ({ element, speed, limit })));
+  let parallaxFrame = 0;
+
+  const updateParallax = () => {
+    if (parallaxFrame) return;
+    parallaxFrame = requestAnimationFrame(() => {
+      parallaxFrame = 0;
+      const viewportCenter = window.innerHeight / 2;
+      parallaxTargets.forEach(({ element, speed, limit }) => {
+        const rect = element.getBoundingClientRect();
+        if (rect.bottom < -80 || rect.top > window.innerHeight + 80) return;
+        const distance = (viewportCenter - (rect.top + rect.height / 2)) * speed;
+        const offset = Math.max(-limit, Math.min(limit, distance));
+        element.style.setProperty('--parallax-y', `${offset.toFixed(2)}px`);
+      });
+    });
+  };
+
+  window.addEventListener('scroll', updateParallax, { passive: true });
+  window.addEventListener('resize', updateParallax, { passive: true });
+  updateParallax();
+}
+
+const companyFilter = document.querySelector('[data-company-filter]');
+if (companyFilter) {
+  const sections = Array.from(document.querySelectorAll('[data-business-section]'));
+  const emptyState = document.querySelector('[data-company-empty]');
+  companyFilter.addEventListener('input', () => {
+    const query = companyFilter.value.trim().toLocaleLowerCase();
+    let visibleCount = 0;
+    sections.forEach((section) => {
+      const details = Array.from(section.querySelectorAll('[data-company-search]'));
+      const sectionMatches = query && section.querySelector('.business-cluster-title')?.textContent.toLocaleLowerCase().includes(query);
+      let sectionCount = 0;
+      details.forEach((item) => {
+        const matches = !query || sectionMatches || item.textContent.toLocaleLowerCase().includes(query);
+        item.hidden = !matches;
+        if (matches) sectionCount += 1;
+        if (query && matches) item.open = true;
+        if (!query) item.open = false;
+      });
+      section.hidden = Boolean(query) && sectionCount === 0;
+      visibleCount += sectionCount;
+    });
+    if (emptyState) emptyState.hidden = visibleCount > 0;
+  });
+}
+
+const newsSearch = document.querySelector('[data-news-search]');
+const newsLanguage = document.querySelector('[data-news-language]');
+if (newsSearch || newsLanguage) {
+  const stories = Array.from(document.querySelectorAll('[data-news-stories] [data-story-language]'));
+  const emptyState = document.querySelector('[data-news-empty]');
+  const filterStories = () => {
+    const query = (newsSearch?.value || '').trim().toLocaleLowerCase();
+    const language = newsLanguage?.value || 'all';
+    let visibleCount = 0;
+    stories.forEach((story) => {
+      const languageMatches = language === 'all' || story.dataset.storyLanguage === language;
+      const textMatches = !query || story.textContent.toLocaleLowerCase().includes(query);
+      story.hidden = !(languageMatches && textMatches);
+      if (!story.hidden) visibleCount += 1;
+    });
+    if (emptyState) emptyState.hidden = visibleCount > 0;
+  };
+  newsSearch?.addEventListener('input', filterStories);
+  newsLanguage?.addEventListener('change', filterStories);
+}

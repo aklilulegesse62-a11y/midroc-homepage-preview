@@ -1,0 +1,12 @@
+name: Homepage feedback
+description: Share feedback on the MIDROC homepage preview.
+title: "Homepage feedback: "
+body:
+  - type: textarea
+    id: feedback
+    attributes:
+      label: What would you change or keep?
+      description: Mention the section and what you noticed.
+      placeholder: The hero section...
+    validations:
+      required: true
