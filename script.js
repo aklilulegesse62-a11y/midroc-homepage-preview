@@ -211,17 +211,16 @@ if (newsSearch || newsLanguage) {
   const description = showcase.querySelector('[data-product-description]');
   const format = showcase.querySelector('[data-product-format]');
   const category = showcase.querySelector('[data-product-category]');
-  const discover = showcase.querySelector('[data-product-discover]');
-  const copy = [brand, name, description, showcase.querySelector('.product-showcase-details'), discover].filter(Boolean);
+  const copy = [brand, name, description, showcase.querySelector('.product-showcase-details')].filter(Boolean);
   if (layers.length < 2 || !brand || !name) return;
 
   const products = [
-    { image: 'assets/merti-tomato-paste.png', alt: 'Merti tomato paste tin', brand: 'MERTI', name: 'TOMATO PASTE', description: 'A MIDROC Agro product', format: '800 g', category: 'Tomato paste', href: 'https://midroc-demo.pages.dev/en/businesses?cluster=agriculture' },
-    { image: 'assets/products/elico-brown-leather-satchel-with-bow-and-tag.png', alt: 'Brown ELICO leather satchel with bow and tag', brand: 'ELICO', name: 'LEATHER SATCHEL', description: 'Leather products by Ethio-Leather Industry', format: 'Leather', category: 'ELICO collection', href: 'https://midroc-demo.pages.dev/en/businesses?cluster=manufacturing' },
-    { image: 'assets/products/elico-spider-man-kids-bag.png', alt: 'ELICO Spider-Man children’s bag', brand: 'ELICO', name: 'SPIDER-MAN BAG', description: 'Leather products by Ethio-Leather Industry', format: 'Kids’ bag', category: 'ELICO collection', href: 'https://midroc-demo.pages.dev/en/businesses?cluster=manufacturing' },
-    { image: 'assets/products/oche-tomato-ketchup-jugs.png', alt: 'OCHE tomato ketchup jugs', brand: 'OCHE', name: 'TOMATO KETCHUP', description: 'A MIDROC food product', format: 'Ketchup', category: 'Food products', href: 'https://midroc-demo.pages.dev/en/businesses?cluster=manufacturing' },
-    { image: 'assets/products/shola-chedder-cheese.png', alt: 'Shola cheddar cheese', brand: 'SHOLA', name: 'CHEDDAR CHEESE', description: 'Produced by Lame Dairy', format: 'Cheddar', category: 'Dairy products', href: 'https://midroc-demo.pages.dev/en/businesses?cluster=manufacturing' },
-    { image: 'assets/products/shola-uht-milk.png', alt: 'Shola UHT milk pouch', brand: 'SHOLA', name: 'UHT MILK', description: 'Produced by Lame Dairy', format: '500 ml', category: 'Dairy products', href: 'https://midroc-demo.pages.dev/en/businesses?cluster=manufacturing' }
+    { image: 'assets/products-normalized/merti-tomato-paste.png', alt: 'Merti tomato paste tin', brand: 'MERTI', name: 'TOMATO PASTE', description: 'A MIDROC Agro product', format: '800 g', category: 'Tomato paste' },
+    { image: 'assets/products-normalized/elico-brown-leather-satchel-with-bow-and-tag.png', alt: 'Brown ELICO leather satchel with bow and tag', brand: 'ELICO', name: 'LEATHER SATCHEL', description: 'Leather products by Ethio-Leather Industry', format: 'Leather', category: 'ELICO collection' },
+    { image: 'assets/products-normalized/elico-spider-man-kids-bag.png', alt: 'ELICO Spider-Man children’s bag', brand: 'ELICO', name: 'KIDS BAG', description: 'Leather products by Ethio-Leather Industry', format: 'Kids’ bag', category: 'ELICO collection' },
+    { image: 'assets/products-normalized/oche-tomato-ketchup-jugs.png', alt: 'OCHE tomato ketchup jugs', brand: 'OCHE', name: 'TOMATO KETCHUP', description: 'A MIDROC food product', format: 'Ketchup', category: 'Food products' },
+    { image: 'assets/products-normalized/shola-chedder-cheese.png', alt: 'Shola cheddar cheese', brand: 'SHOLA', name: 'CHEDDAR CHEESE', description: 'Produced by Lame Dairy', format: 'Cheddar', category: 'Dairy products' },
+    { image: 'assets/products-normalized/shola-uht-milk.png', alt: 'Shola UHT milk pouch', brand: 'SHOLA', name: 'UHT MILK', description: 'Produced by Lame Dairy', format: '500 ml', category: 'Dairy products' }
   ];
   products.forEach((product) => { const image = new Image(); image.src = product.image; });
 
@@ -235,7 +234,6 @@ if (newsSearch || newsLanguage) {
     if (description) description.textContent = product.description;
     if (format) format.textContent = product.format;
     if (category) category.textContent = product.category;
-    if (discover) discover.href = product.href;
   };
   const showNext = () => {
     index = (index + 1) % products.length;

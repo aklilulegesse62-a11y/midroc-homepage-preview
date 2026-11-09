@@ -767,3 +767,7 @@ h1 em,h2 em,h3 em,h4 em,h5 em,h6 em{font-family:Montserrat,Arial,sans-serif!impo
 .product-showcase-copy [data-product-brand],.product-showcase-copy [data-product-name],.product-showcase-description,.product-showcase-details,.product-showcase-discover{transition:opacity .3s ease,transform .3s ease}
 .product-showcase-copy .is-product-changing{opacity:0;transform:translateY(5px)}
 @media(prefers-reduced-motion:reduce){.product-showcase-visual img,.product-showcase-copy [data-product-brand],.product-showcase-copy [data-product-name],.product-showcase-description,.product-showcase-details,.product-showcase-discover{transition:none!important}}
+
+
+/* Keep the visible product bounds consistent within the shared spotlight canvas */
+.product-showcase-visual img{inset:9% auto auto 9%;width:82%;height:82%;object-fit:contain;object-position:center}
