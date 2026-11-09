@@ -52,6 +52,8 @@ const revealGroups = [
   '.clusters .section-heading > *',
   '#clusters .cluster-card > svg, #clusters .cluster-card > strong',
   '.stats-row > div',
+  '.product-showcase-copy > *',
+  '.product-showcase-visual',
   '.about-band-copy > *',
   '.about-band-photo',
   '.news-masthead > *',
@@ -118,7 +120,11 @@ if (prefersReducedMotion || !('IntersectionObserver' in window)) {
 
   const parallaxTargets = [
     { selector: '.hero-image', speed: 0.12, limit: 26 },
+    { selector: '.about-hero-image', speed: 0.055, limit: 12 },
+    { selector: '.about-visual-image img', speed: 0.04, limit: 10 },
+    { selector: '.about-cluster-card img', speed: 0.035, limit: 8 },
     { selector: '.about-band-photo img', speed: 0.065, limit: 17 },
+    { selector: '.product-showcase-visual img', speed: 0.035, limit: 9 },
     { selector: '.career-slice', speed: 0.04, limit: 10 },
     { selector: '.news-panel>img', speed: 0.045, limit: 13 },
     { selector: '.business-cluster-image img', speed: 0.04, limit: 12 },
@@ -192,3 +198,69 @@ if (newsSearch || newsLanguage) {
   newsSearch?.addEventListener('input', filterStories);
   newsLanguage?.addEventListener('change', filterStories);
 }
+
+
+
+/* Homepage product spotlight: cycle through MIDROC products every three seconds */
+(() => {
+  const showcase = document.querySelector('.product-showcase');
+  if (!showcase) return;
+  const layers = [...showcase.querySelectorAll('[data-product-layer]')];
+  const brand = showcase.querySelector('[data-product-brand]');
+  const name = showcase.querySelector('[data-product-name]');
+  const description = showcase.querySelector('[data-product-description]');
+  const format = showcase.querySelector('[data-product-format]');
+  const category = showcase.querySelector('[data-product-category]');
+  const discover = showcase.querySelector('[data-product-discover]');
+  const copy = [brand, name, description, showcase.querySelector('.product-showcase-details'), discover].filter(Boolean);
+  if (layers.length < 2 || !brand || !name) return;
+
+  const products = [
+    { image: 'assets/merti-tomato-paste.png', alt: 'Merti tomato paste tin', brand: 'MERTI', name: 'TOMATO PASTE', description: 'A MIDROC Agro product', format: '800 g', category: 'Tomato paste', href: 'https://midroc-demo.pages.dev/en/businesses?cluster=agriculture' },
+    { image: 'assets/products/elico-brown-leather-satchel-with-bow-and-tag.png', alt: 'Brown ELICO leather satchel with bow and tag', brand: 'ELICO', name: 'LEATHER SATCHEL', description: 'Leather products by Ethio-Leather Industry', format: 'Leather', category: 'ELICO collection', href: 'https://midroc-demo.pages.dev/en/businesses?cluster=manufacturing' },
+    { image: 'assets/products/elico-spider-man-kids-bag.png', alt: 'ELICO Spider-Man children’s bag', brand: 'ELICO', name: 'SPIDER-MAN BAG', description: 'Leather products by Ethio-Leather Industry', format: 'Kids’ bag', category: 'ELICO collection', href: 'https://midroc-demo.pages.dev/en/businesses?cluster=manufacturing' },
+    { image: 'assets/products/oche-tomato-ketchup-jugs.png', alt: 'OCHE tomato ketchup jugs', brand: 'OCHE', name: 'TOMATO KETCHUP', description: 'A MIDROC food product', format: 'Ketchup', category: 'Food products', href: 'https://midroc-demo.pages.dev/en/businesses?cluster=manufacturing' },
+    { image: 'assets/products/shola-chedder-cheese.png', alt: 'Shola cheddar cheese', brand: 'SHOLA', name: 'CHEDDAR CHEESE', description: 'Produced by Lame Dairy', format: 'Cheddar', category: 'Dairy products', href: 'https://midroc-demo.pages.dev/en/businesses?cluster=manufacturing' },
+    { image: 'assets/products/shola-uht-milk.png', alt: 'Shola UHT milk pouch', brand: 'SHOLA', name: 'UHT MILK', description: 'Produced by Lame Dairy', format: '500 ml', category: 'Dairy products', href: 'https://midroc-demo.pages.dev/en/businesses?cluster=manufacturing' }
+  ];
+  products.forEach((product) => { const image = new Image(); image.src = product.image; });
+
+  let index = 0;
+  let activeLayer = 0;
+  let timer = 0;
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const update = (product) => {
+    brand.textContent = product.brand;
+    name.textContent = product.name;
+    if (description) description.textContent = product.description;
+    if (format) format.textContent = product.format;
+    if (category) category.textContent = product.category;
+    if (discover) discover.href = product.href;
+  };
+  const showNext = () => {
+    index = (index + 1) % products.length;
+    const product = products[index];
+    copy.forEach((element) => element.classList.add('is-product-changing'));
+    const nextLayerIndex = 1 - activeLayer;
+    const nextLayer = layers[nextLayerIndex];
+    const currentLayer = layers[activeLayer];
+    window.setTimeout(() => {
+      update(product);
+      nextLayer.src = product.image;
+      nextLayer.alt = product.alt;
+      nextLayer.removeAttribute('aria-hidden');
+      currentLayer.setAttribute('aria-hidden', 'true');
+      currentLayer.alt = '';
+      nextLayer.classList.add('is-active');
+      currentLayer.classList.remove('is-active');
+      activeLayer = nextLayerIndex;
+      requestAnimationFrame(() => copy.forEach((element) => element.classList.remove('is-product-changing')));
+    }, motionPreference.matches ? 0 : 180);
+  };
+  const start = () => { if (!timer && !document.hidden) timer = window.setInterval(showNext, 3000); };
+  const pause = () => { if (timer) window.clearInterval(timer); timer = 0; };
+  showcase.addEventListener('focusin', pause);
+  showcase.addEventListener('focusout', (event) => { if (!showcase.contains(event.relatedTarget)) start(); });
+  document.addEventListener('visibilitychange', () => document.hidden ? pause() : start());
+  start();
+})();
