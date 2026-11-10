@@ -219,8 +219,8 @@ if (newsSearch || newsLanguage) {
     { image: 'assets/products-normalized/elico-brown-leather-satchel-with-bow-and-tag.png', alt: 'Brown ELICO leather satchel with bow and tag', brand: 'ELICO', name: 'LEATHER SATCHEL', description: 'Leather products by Ethio-Leather Industry', format: 'Leather', category: 'ELICO collection' },
     { image: 'assets/products-normalized/elico-spider-man-kids-bag.png', alt: 'ELICO Spider-Man children’s bag', brand: 'ELICO', name: 'KIDS BAG', description: 'Leather products by Ethio-Leather Industry', format: 'Kids’ bag', category: 'ELICO collection' },
     { image: 'assets/products-normalized/oche-tomato-ketchup-jugs.png', alt: 'OCHE tomato ketchup jugs', brand: 'OCHE', name: 'TOMATO KETCHUP', description: 'A MIDROC food product', format: 'Ketchup', category: 'Food products' },
-    { image: 'assets/products-normalized/shola-chedder-cheese.png', alt: 'Shola cheddar cheese', brand: 'SHOLA', name: 'CHEDDAR CHEESE', description: 'Produced by Lame Dairy', format: 'Cheddar', category: 'Dairy products' },
-    { image: 'assets/products-normalized/shola-uht-milk.png', alt: 'Shola UHT milk pouch', brand: 'SHOLA', name: 'UHT MILK', description: 'Produced by Lame Dairy', format: '500 ml', category: 'Dairy products' }
+    { image: 'assets/products-normalized/shola-chedder-cheese.png', alt: 'Shola cheddar cheese', brand: 'SHOLA', name: 'CHEESE', description: 'Produced by Lame Dairy', format: 'Cheddar', category: 'Dairy products' },
+    { image: 'assets/products-normalized/shola-uht-milk.png', alt: 'Shola UHT milk pouch', brand: 'SHOLA', name: 'MILK', description: 'Produced by Lame Dairy', format: '500 ml', category: 'Dairy products' }
   ];
   products.forEach((product) => { const image = new Image(); image.src = product.image; });
 
