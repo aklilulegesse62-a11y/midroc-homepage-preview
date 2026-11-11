@@ -8,3 +8,19 @@
 /* Keep the copied live News hero aligned with the shared page hero headline anchor. */
 @media(min-width:768px){.hero-h{justify-content:flex-start!important;padding-top:clamp(85px,12vh,120px)!important}}
 @media(max-width:767px){.hero-h{min-height:390px!important;justify-content:flex-start!important;padding-top:48px!important;padding-bottom:32px!important}}
+
+/* HERO POSITION CONTROLS — adjust X/Y values here for the copied live pages. */
+:root{
+  --hero-news-desktop-x:0px; --hero-news-desktop-y:clamp(85px,12vh,120px);
+  --hero-news-mobile-x:0px; --hero-news-mobile-y:48px;
+  --hero-contact-desktop-x:0px; --hero-contact-desktop-y:0px;
+  --hero-contact-mobile-x:0px; --hero-contact-mobile-y:0px;
+}
+@media(min-width:768px){
+  .hero-h{padding-top:var(--hero-news-desktop-y)!important;transform:translateX(var(--hero-news-desktop-x))}
+  main>section.stripes-banner .wrap>div:first-child{transform:translate(var(--hero-contact-desktop-x),var(--hero-contact-desktop-y))}
+}
+@media(max-width:767px){
+  .hero-h{min-height:390px!important;justify-content:flex-start!important;padding:var(--hero-news-mobile-y) var(--hero-news-mobile-x) 32px!important;transform:translateX(var(--hero-news-mobile-x))}
+  main>section.stripes-banner .wrap>div:first-child{transform:translate(var(--hero-contact-mobile-x),var(--hero-contact-mobile-y))}
+}
