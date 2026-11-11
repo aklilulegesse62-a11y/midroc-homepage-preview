@@ -1103,8 +1103,8 @@ body.has-brand-intro{overflow:hidden}
 
 /* Give the two visually compact marks more room in the shared brand ticker. */
 .cluster-brand-mark img[src*="mamco.png"],
-.cluster-brand-mark img[src*="queens-supermarket.png"]{max-width:104px;max-height:94px}
+.cluster-brand-mark img[src*="queens-supermarket.png"]{max-width:125px;max-height:112px}
 @media(max-width:680px){
   .cluster-brand-mark img[src*="mamco.png"],
-  .cluster-brand-mark img[src*="queens-supermarket.png"]{max-width:92px;max-height:84px}
+  .cluster-brand-mark img[src*="queens-supermarket.png"]{max-width:110px;max-height:98px}
 }
