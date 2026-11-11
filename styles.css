@@ -1161,6 +1161,12 @@ body.has-brand-intro{overflow:hidden}
   .leadership-masthead .leadership-hero-content{translate:244.3px -40.5px!important}
   .about-story > div:first-child{translate:240.5px -7.2px!important}
   .about-story .about-story-copy{translate:261.1px 32.5px!important}
+  .industry-agriculture-page .industry-detail-copy{translate:265px -8.7px!important}
+  .industry-commerce-page .industry-detail-copy{translate:263.4px 1.8px!important}
+  .industry-construction-page .industry-detail-copy{translate:260.4px -.3px!important}
+  .industry-hotels-page .industry-detail-copy{translate:259.6px 4.1px!important}
+  .industry-manufacturing-page .industry-detail-copy{translate:258.8px -8.3px!important}
+  .industry-mining-page .industry-detail-copy{translate:258.8px -6.8px!important}
 }
 @media(max-width:680px){
   .home-hero:not(.leadership-masthead) .hero-content{translate:0 0!important}
