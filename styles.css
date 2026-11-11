@@ -1103,8 +1103,53 @@ body.has-brand-intro{overflow:hidden}
 
 /* Give the two visually compact marks more room in the shared brand ticker. */
 .cluster-brand-mark img[src*="mamco.png"],
-.cluster-brand-mark img[src*="queens-supermarket.png"]{max-width:125px;max-height:112px}
+.cluster-brand-mark img[src*="queens-supermarket.png"],
+.cluster-brand-mark img[src*="sheraton-addis"]{max-width:125px;max-height:112px}
 @media(max-width:680px){
   .cluster-brand-mark img[src*="mamco.png"],
-  .cluster-brand-mark img[src*="queens-supermarket.png"]{max-width:110px;max-height:98px}
+  .cluster-brand-mark img[src*="queens-supermarket.png"],
+  .cluster-brand-mark img[src*="sheraton-addis"]{max-width:110px;max-height:98px}
+}
+
+/* HERO POSITION CONTROLS
+   Change the X value to move a page's text left or right, and Y to move it up or down.
+   Desktop and mobile values are separate. For example, change --hero-home-desktop-x. */
+:root{
+  --hero-home-desktop-x:18.8%; --hero-home-desktop-y:120px;
+  --hero-about-desktop-x:5.7%; --hero-about-desktop-y:clamp(85px,12vh,120px);
+  --hero-industries-desktop-x:5.7%; --hero-industries-desktop-y:clamp(85px,12vh,120px);
+  --hero-leadership-desktop-x:5.7%; --hero-leadership-desktop-y:clamp(85px,12vh,120px);
+  --hero-community-desktop-x:0px; --hero-community-desktop-y:clamp(85px,12vh,120px);
+  --hero-governance-desktop-x:0px; --hero-governance-desktop-y:clamp(85px,12vh,120px);
+  --hero-industry-desktop-x:var(--gutter); --hero-industry-desktop-y:clamp(85px,12vh,120px);
+  --hero-home-mobile-x:22px; --hero-home-mobile-y:50px;
+  --hero-about-mobile-x:22px; --hero-about-mobile-y:48px;
+  --hero-industries-mobile-x:22px; --hero-industries-mobile-y:48px;
+  --hero-leadership-mobile-x:22px; --hero-leadership-mobile-y:50px;
+  --hero-community-mobile-x:22px; --hero-community-mobile-y:48px;
+  --hero-governance-mobile-x:22px; --hero-governance-mobile-y:48px;
+  --hero-industry-mobile-x:22px; --hero-industry-mobile-y:35px;
+}
+@media(min-width:1101px){
+  .home-hero:not(.leadership-masthead) .hero-content{margin-top:var(--hero-home-desktop-y)!important;margin-left:var(--hero-home-desktop-x)!important}
+}
+@media(min-width:681px){
+  .about-hero-copy{left:var(--hero-about-desktop-x)!important;top:var(--hero-about-desktop-y)!important}
+  .business-masthead-reference .business-masthead-copy{left:var(--hero-industries-desktop-x)!important;top:var(--hero-industries-desktop-y)!important}
+  .leadership-masthead .leadership-hero-content{margin-top:var(--hero-leadership-desktop-y)!important;margin-left:var(--hero-leadership-desktop-x)!important}
+  .community-masthead-copy{position:relative;left:var(--hero-community-desktop-x)!important;margin-top:var(--hero-community-desktop-y)!important}
+  .governance-masthead-copy{position:relative;left:var(--hero-governance-desktop-x)!important;margin-top:var(--hero-governance-desktop-y)!important}
+  .industry-detail-copy{padding:var(--hero-industry-desktop-y) 0 64px var(--hero-industry-desktop-x)!important}
+}
+@media(max-width:680px){
+  .home-hero{padding-top:var(--hero-home-mobile-y)!important}
+  .home-hero .hero-content{padding-inline:var(--hero-home-mobile-x)!important}
+  .about-hero-copy{top:var(--hero-about-mobile-y)!important;left:var(--hero-about-mobile-x)!important;right:var(--hero-about-mobile-x)!important;width:auto!important}
+  .leadership-masthead.home-hero{padding-top:var(--hero-leadership-mobile-y)!important}
+  .leadership-masthead .leadership-hero-content{padding-inline:var(--hero-leadership-mobile-x)!important}
+  .business-masthead-reference{padding-top:var(--hero-industries-mobile-y)!important}
+  .business-masthead-reference .business-masthead-copy{padding-inline:var(--hero-industries-mobile-x)!important}
+  .community-masthead{padding-top:var(--hero-community-mobile-y)!important;padding-inline:var(--hero-community-mobile-x)!important}
+  .governance-masthead{padding-top:var(--hero-governance-mobile-y)!important;padding-inline:var(--hero-governance-mobile-x)!important}
+  .industry-detail-copy{padding:var(--hero-industry-mobile-y) var(--hero-industry-mobile-x) 39px!important}
 }
