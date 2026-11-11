@@ -1111,9 +1111,7 @@ body.has-brand-intro{overflow:hidden}
   .cluster-brand-mark img[src*="sheraton-addis"]{max-width:110px;max-height:98px}
 }
 
-/* HERO POSITION CONTROLS
-   Change the X value to move a page's text left or right, and Y to move it up or down.
-   Desktop and mobile values are separate. For example, change --hero-home-desktop-x. */
+/* Initial hero alignment defaults. Use visual drag mode for manual placement. */
 :root{
   --hero-home-desktop-x:18.8%; --hero-home-desktop-y:120px;
   --hero-about-desktop-x:5.7%; --hero-about-desktop-y:clamp(85px,12vh,120px);
