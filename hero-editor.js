@@ -56,7 +56,7 @@
   if (!targets.length) return;
 
   document.body.dataset.heroEditorPage = page.id;
-  const storagePrefix = 'midroc-hero-placement-v1:';
+  const storagePrefix = 'midroc-hero-adjustment-v2:';
   const mobileQuery = window.matchMedia('(max-width: 680px)');
   const viewName = () => mobileQuery.matches ? 'phone' : 'desktop';
   const storageKey = (targetId) => storagePrefix + page.id + ':' + targetId + ':' + viewName();
@@ -70,7 +70,7 @@
   };
   targets.forEach((item) => {
     item.offset = read(storageKey(item.id));
-    item.element.style.setProperty('translate', item.offset.x + 'px ' + item.offset.y + 'px', 'important');
+    item.element.style.setProperty('translate', 'calc(var(--hero-locked-x, 0px) + ' + item.offset.x + 'px) calc(var(--hero-locked-y, 0px) + ' + item.offset.y + 'px)', 'important');
   });
 
   if (!isEditorOpen) return;
@@ -106,7 +106,7 @@
   const viewLabel = toolbar.querySelector('.mhe-view');
   const targetButtons = toolbar.querySelector('.mhe-targets');
   const paint = (item) => {
-    item.element.style.setProperty('translate', item.offset.x + 'px ' + item.offset.y + 'px', 'important');
+    item.element.style.setProperty('translate', 'calc(var(--hero-locked-x, 0px) + ' + item.offset.x + 'px) calc(var(--hero-locked-y, 0px) + ' + item.offset.y + 'px)', 'important');
   };
   const refreshSelection = () => {
     activeTitle.textContent = targets[activeIndex].title;
@@ -204,7 +204,7 @@
     } catch {}
     targets.forEach((item) => { placements[page.id + ':' + item.id + ':' + viewName()] = item.offset; });
     const payload = {
-      instructions: 'Hero and section text placements moved with the visual MIDROC editor. Desktop and phone positions are stored separately.',
+      instructions: 'Additional cursor adjustments from the locked MIDROC layout. Desktop and phone adjustments are stored separately.',
       placements
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });

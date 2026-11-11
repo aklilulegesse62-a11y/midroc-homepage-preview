@@ -1151,3 +1151,19 @@ body.has-brand-intro{overflow:hidden}
   .governance-masthead{padding-top:var(--hero-governance-mobile-y)!important;padding-inline:var(--hero-governance-mobile-x)!important}
   .industry-detail-copy{padding:var(--hero-industry-mobile-y) var(--hero-industry-mobile-x) 39px!important}
 }
+
+/* Locked cursor-edited hero and About story placements. */
+@media(min-width:681px){
+  .home-hero:not(.leadership-masthead) .hero-content{--hero-locked-x:-6.9px;--hero-locked-y:-1.4px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
+  .about-hero:not(.history-page-hero) .about-hero-copy{--hero-locked-x:229.6px;--hero-locked-y:-2.2px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
+  .history-page-hero .about-hero-copy{--hero-locked-x:238.1px;--hero-locked-y:-19.7px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
+  .business-masthead-reference .business-masthead-copy{--hero-locked-x:41.5px;--hero-locked-y:-2.7px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
+  .leadership-masthead .leadership-hero-content{--hero-locked-x:244.3px;--hero-locked-y:-40.5px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
+  .about-story > div:first-child{--hero-locked-x:240.5px;--hero-locked-y:-7.2px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
+  .about-story .about-story-copy{--hero-locked-x:261.1px;--hero-locked-y:32.5px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
+}
+@media(max-width:680px){
+  .about-hero:not(.history-page-hero) .about-hero-copy{--hero-locked-x:0.2px;--hero-locked-y:48.5px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
+  .leadership-masthead .leadership-hero-content{--hero-locked-x:2px;--hero-locked-y:40.2px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
+  .hero-h{--hero-locked-x:12px;--hero-locked-y:5.6px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
+}
