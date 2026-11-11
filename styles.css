@@ -1152,18 +1152,19 @@ body.has-brand-intro{overflow:hidden}
   .industry-detail-copy{padding:var(--hero-industry-mobile-y) var(--hero-industry-mobile-x) 39px!important}
 }
 
-/* Locked cursor-edited hero and About story placements. */
+/* Final cursor-edited placements, now baked into the page styles. */
 @media(min-width:681px){
-  .home-hero:not(.leadership-masthead) .hero-content{--hero-locked-x:-6.9px;--hero-locked-y:-1.4px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
-  .about-hero:not(.history-page-hero) .about-hero-copy{--hero-locked-x:229.6px;--hero-locked-y:-2.2px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
-  .history-page-hero .about-hero-copy{--hero-locked-x:238.1px;--hero-locked-y:-19.7px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
-  .business-masthead-reference .business-masthead-copy{--hero-locked-x:41.5px;--hero-locked-y:-2.7px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
-  .leadership-masthead .leadership-hero-content{--hero-locked-x:244.3px;--hero-locked-y:-40.5px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
-  .about-story > div:first-child{--hero-locked-x:240.5px;--hero-locked-y:-7.2px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
-  .about-story .about-story-copy{--hero-locked-x:261.1px;--hero-locked-y:32.5px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
+  .home-hero:not(.leadership-masthead) .hero-content{translate:-6.9px -1.4px!important}
+  .about-hero:not(.history-page-hero) .about-hero-copy{translate:229.6px -2.2px!important}
+  .history-page-hero .about-hero-copy{translate:238.1px -19.7px!important}
+  .business-masthead-reference .business-masthead-copy{translate:246.6px -20.2px!important}
+  .leadership-masthead .leadership-hero-content{translate:244.3px -40.5px!important}
+  .about-story > div:first-child{translate:240.5px -7.2px!important}
+  .about-story .about-story-copy{translate:261.1px 32.5px!important}
 }
 @media(max-width:680px){
-  .about-hero:not(.history-page-hero) .about-hero-copy{--hero-locked-x:0.2px;--hero-locked-y:48.5px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
-  .leadership-masthead .leadership-hero-content{--hero-locked-x:2px;--hero-locked-y:40.2px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
-  .hero-h{--hero-locked-x:12px;--hero-locked-y:5.6px;translate:var(--hero-locked-x) var(--hero-locked-y)!important}
+  .home-hero:not(.leadership-masthead) .hero-content{translate:0 0!important}
+  .about-hero:not(.history-page-hero) .about-hero-copy{translate:.2px 48.5px!important}
+  .leadership-masthead .leadership-hero-content{translate:2px 40.2px!important}
+  .hero-h{translate:12px 5.6px!important}
 }
