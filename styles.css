@@ -1156,7 +1156,7 @@ body.has-brand-intro{overflow:hidden}
 @media(min-width:681px){
   .home-hero:not(.leadership-masthead) .hero-content{translate:-6.9px -1.4px!important}
   .about-hero:not(.history-page-hero) .about-hero-copy{translate:229.6px -2.2px!important}
-  .history-page-hero .about-hero-copy{translate:238.1px -19.7px!important}
+  .history-page-hero .about-hero-copy{left:19.3%!important;translate:0 -19.7px!important}
   .business-masthead-reference .business-masthead-copy{translate:246.6px -20.2px!important}
   .leadership-masthead .leadership-hero-content{translate:244.3px -40.5px!important}
   .about-story > div:first-child{translate:240.5px -7.2px!important}
@@ -1167,6 +1167,9 @@ body.has-brand-intro{overflow:hidden}
   .industry-hotels-page .industry-detail-copy{translate:259.6px 4.1px!important}
   .industry-manufacturing-page .industry-detail-copy{translate:258.8px -8.3px!important}
   .industry-mining-page .industry-detail-copy{translate:258.8px -6.8px!important}
+}
+@media(min-width:681px) and (max-width:900px){
+  .history-page-hero .about-hero-copy{left:9%!important}
 }
 @media(max-width:680px){
   .home-hero:not(.leadership-masthead) .hero-content{translate:0 0!important}
