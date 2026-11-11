@@ -262,3 +262,55 @@ if (newsSearch || newsLanguage) {
   document.addEventListener('visibilitychange', () => document.hidden ? pause() : start());
   start();
 })();
+
+(() => {
+  const intro = document.querySelector('[data-brand-intro]');
+  if (!intro) return;
+
+  const video = intro.querySelector('video');
+  const skip = intro.querySelector('[data-brand-intro-skip]');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const seenKey = 'midrocBrandRevealSeenV1';
+  const forceIntro = new URLSearchParams(window.location.search).get('intro') === '1';
+  let alreadySeen = false;
+  try { alreadySeen = sessionStorage.getItem(seenKey) === '1'; } catch {}
+
+  if ((alreadySeen && !forceIntro) || reducedMotion) {
+    intro.remove();
+    return;
+  }
+
+  const pageParts = Array.from(document.body.children).filter((element) => element !== intro);
+  pageParts.forEach((element) => { element.inert = true; });
+  document.body.classList.add('has-brand-intro');
+
+  let dismissed = false;
+  const enterSite = () => {
+    if (dismissed) return;
+    dismissed = true;
+    try { sessionStorage.setItem(seenKey, '1'); } catch {}
+    video?.pause();
+    pageParts.forEach((element) => { element.inert = false; });
+    document.body.classList.remove('has-brand-intro');
+    intro.classList.add('is-exiting');
+    window.setTimeout(() => intro.remove(), 600);
+  };
+
+  skip?.addEventListener('click', enterSite, { once: true });
+  video?.addEventListener('playing', () => {
+    intro.classList.remove('is-fallback');
+    intro.classList.add('is-playing');
+  }, { once: true });
+  video?.addEventListener('ended', enterSite, { once: true });
+  const showFallback = () => {
+    if (dismissed) return;
+    intro.classList.add('is-fallback');
+    window.setTimeout(enterSite, 1500);
+  };
+  video?.addEventListener('error', showFallback, { once: true });
+  window.setTimeout(showFallback, 8000);
+  skip?.focus({ preventScroll: true });
+
+  const playback = video?.play();
+  if (playback && typeof playback.catch === 'function') playback.catch(showFallback);
+})();

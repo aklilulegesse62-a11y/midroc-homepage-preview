@@ -1,7 +1,7 @@
-# MIDROC homepage preview
+# MIDROC website preview
 
-This public repository contains only the redesigned MIDROC homepage and the assets it needs. The other redesigned page files are not included. Links to those sections lead to their current MIDROC pages.
+This repository publishes the complete redesigned English MIDROC website preview through GitHub Pages.
 
-GitHub Pages deploys this directory through the workflow in `.github/workflows/pages.yml`. Once published, use the **Issues** tab and choose **Homepage feedback** to leave a comment on the design. GitHub requires visitors to sign in to post feedback.
+Pages included: Home, About, History, Industries, six industry detail pages, Leadership, News, Contact, Community, and Governance.
 
-Feedback on the homepage design is welcome via a GitHub Issue.
+After deployment, visitors can browse the full site and leave feedback through the repository's Issues tab.
