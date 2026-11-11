@@ -1168,3 +1168,7 @@ body.has-brand-intro{overflow:hidden}
   .leadership-masthead .leadership-hero-content{translate:2px 40.2px!important}
   .hero-h{translate:12px 5.6px!important}
 }
+
+@media(min-width:681px){
+  .about-story.section-pad{padding-top:68px!important;padding-bottom:68px!important}
+}
