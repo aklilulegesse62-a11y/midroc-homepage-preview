@@ -1,4 +1,4 @@
-.contact-industry-hero{position:relative;isolation:isolate;display:flex;align-items:center;min-height:clamp(420px,32vw,560px);overflow:hidden;background:#426c5b;color:#fff}
+.contact-industry-hero{position:relative;isolation:isolate;display:flex;align-items:center;height:clamp(360px,25.5vw,460px);min-height:360px;overflow:hidden;background:#426c5b;color:#fff}
 .contact-industry-copy{position:relative;z-index:2;width:min(38%,640px);margin-left:16.1%;padding:58px 0}
 .contact-industry-eyebrow{display:flex;align-items:center;gap:11px;margin:0 0 18px;color:rgba(255,255,255,.84);font-size:11px;font-weight:700;letter-spacing:.17em;text-transform:uppercase}
 .contact-industry-eyebrow:before{width:28px;height:2px;background:#c2984d;content:""}
@@ -17,9 +17,9 @@
 .contact-industry-slice:nth-child(4){--slice-left:60%}
 .contact-industry-slice img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .7s ease}
 .contact-industry-hero:hover .contact-industry-slice img{transform:scale(1.035)}
-@media(max-width:900px){.contact-industry-copy{width:41%;margin-left:8%}.contact-industry-hero h1{font-size:clamp(36px,5.1vw,52px)}.contact-industry-motif{left:40%}}
+@media(max-width:900px){.contact-industry-hero{height:clamp(360px,38vw,440px);min-height:360px}.contact-industry-copy{width:41%;margin-left:8%}.contact-industry-hero h1{font-size:clamp(36px,5.1vw,52px)}.contact-industry-motif{left:40%}}
 @media(max-width:680px){
-  .contact-industry-hero{display:flex;flex-direction:column;align-items:stretch;min-height:0}
+  .contact-industry-hero{display:flex;flex-direction:column;align-items:stretch;height:auto;min-height:0}
   .contact-industry-copy{width:auto;max-width:none;margin:0;padding:46px 22px 0}
   .contact-industry-eyebrow{margin-bottom:15px;font-size:10px}
   .contact-industry-hero h1{max-width:600px;margin-bottom:16px;font-size:clamp(31px,8.1vw,44px);line-height:1.07;letter-spacing:-.04em}
@@ -28,7 +28,7 @@
   .contact-industry-actions a{min-height:38px;padding:0 14px;font-size:clamp(9px,2.8vw,12px);white-space:nowrap}
   .contact-industry-contact{width:clamp(105px,28vw,150px);flex:0 0 auto}
   .contact-industry-email{min-width:0;flex:1 1 auto;padding-inline:8px!important}
-  .contact-industry-motif{position:relative;inset:auto;width:100%;height:clamp(245px,74vw,390px);margin-top:clamp(38px,13vw,64px);flex:0 0 auto}
+  .contact-industry-motif{position:relative;inset:auto;width:100%;height:clamp(210px,58vw,300px);margin-top:20px;flex:0 0 auto}
   .contact-industry-slice{top:0;bottom:0;width:44%;clip-path:polygon(52% 0,100% 0,48% 100%,0 100%)}
   .contact-industry-slice:nth-child(1){--slice-left:-3%}
   .contact-industry-slice:nth-child(2){--slice-left:22%}
