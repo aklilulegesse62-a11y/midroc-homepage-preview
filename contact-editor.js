@@ -4,7 +4,7 @@
   const target = document.querySelector('#contact-hero-title');
   if (!target) return;
 
-  const storagePrefix = 'midroc-contact-headline-position-v1:';
+  const storagePrefix = 'midroc-contact-headline-position-v2:';
   const mobileQuery = window.matchMedia('(max-width: 680px)');
   const viewName = () => mobileQuery.matches ? 'phone' : 'desktop';
   const storageKey = (view = viewName()) => storagePrefix + view;

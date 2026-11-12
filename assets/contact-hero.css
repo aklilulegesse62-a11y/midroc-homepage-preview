@@ -36,3 +36,4 @@
   .contact-industry-slice:nth-child(4){--slice-left:72%}
 }
 @media(max-width:340px){.contact-industry-actions{flex-wrap:wrap}.contact-industry-email{flex-basis:100%;white-space:normal}}
+@media(min-width:681px){.contact-industry-hero h1{translate:68.4px -3.8px!important}}
