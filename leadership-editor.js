@@ -27,6 +27,12 @@
   let targets = [];
   let activeIndex = 0;
   let toolbar;
+  const placementTargetSelector = '.leadership-hero-content,.principal-desktop-card,.principal-mobile-card,.leadership-clusters-label,.deputy-desktop-card,.deputy-mobile-card';
+  const principalTitles = ['Chairman and Owner', 'CEO'];
+  const deputyTitles = [
+    'Ato Akalewold Admassu', 'Ato Dulla Mekonne', 'Ato Feleke Tadesse', 'Ato Hussein Ahmed',
+    'Ato Solomone Zewdu', 'W/ro Zahra Abdulhaidi', 'Dr. Sani Redi', 'Dr. Zeraye Mehari'
+  ];
 
   const definitionsForView = () => {
     const definitions = [
@@ -34,20 +40,21 @@
     ];
     if (viewName() === 'phone') {
       document.querySelectorAll('.principal-mobile-card').forEach((element, index) => {
-        definitions.push({ id: 'principal-' + (index + 1), title: index === 0 ? 'Chairman card' : 'CEO card', element });
+        definitions.push({ id: 'principal-' + (index + 1), title: principalTitles[index] + ' image', element });
       });
     } else {
-      definitions.push({ id: 'principals-artwork', title: 'Chairman & CEO artwork', selector: '.leadership-principals-art' });
+      document.querySelectorAll('.principal-desktop-card').forEach((element, index) => {
+        definitions.push({ id: 'principal-' + (index + 1), title: principalTitles[index] + ' image', element });
+      });
     }
     definitions.push({ id: 'deputy-heading', title: 'Deputy CEOs heading', selector: '.leadership-clusters-label' });
     if (viewName() === 'phone') {
       document.querySelectorAll('.deputy-mobile-card').forEach((element, index) => {
-        const labels = ['Manufacturing', 'Mining', 'Agro', 'Commerce & Service', 'Hotel & Resort', 'Construction & Real Estate', 'Deputy CEO 7', 'Deputy CEO 8'];
-        definitions.push({ id: 'deputy-' + (index + 1), title: labels[index] + ' card', element });
+        definitions.push({ id: 'deputy-' + (index + 1), title: deputyTitles[index] + ' image', element });
       });
     } else {
-      document.querySelectorAll('.deputy-leadership-banner').forEach((element, index) => {
-        definitions.push({ id: 'deputy-row-' + (index + 1), title: 'Deputy CEOs row ' + (index + 1), element });
+      document.querySelectorAll('.deputy-desktop-card').forEach((element, index) => {
+        definitions.push({ id: 'deputy-' + (index + 1), title: deputyTitles[index] + ' image', element });
       });
     }
     return definitions.map((item) => ({ ...item, element: item.element || document.querySelector(item.selector) }))
@@ -59,7 +66,7 @@
     item.element.style.setProperty('translate', `calc(${base.x}px + ${item.offset.x}px) calc(${base.y}px + ${item.offset.y}px)`, 'important');
   };
   const applySavedPositions = () => {
-    document.querySelectorAll('.leadership-hero-content,.leadership-principals-art,.principal-mobile-card,.leadership-clusters-label,.deputy-leadership-banner,.deputy-mobile-card').forEach((element) => {
+    document.querySelectorAll(placementTargetSelector).forEach((element) => {
       if (!baseOffsets.has(element)) baseOffsets.set(element, parseTranslate(getComputedStyle(element).translate));
     });
     targets = definitionsForView().map((item) => ({ ...item, offset: read(item.id) }));
@@ -128,7 +135,7 @@
     if (rect.top < 90 || rect.bottom > window.innerHeight - 90) element.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
-  document.querySelectorAll('.leadership-hero-content,.leadership-principals-art,.principal-mobile-card,.leadership-clusters-label,.deputy-leadership-banner,.deputy-mobile-card').forEach((element) => {
+  document.querySelectorAll(placementTargetSelector).forEach((element) => {
     element.setAttribute('tabindex', '0');
     element.setAttribute('draggable', 'false');
     element.addEventListener('pointerdown', (event) => {

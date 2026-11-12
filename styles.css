@@ -813,9 +813,13 @@ h1 em,h2 em,h3 em,h4 em,h5 em,h6 em{font-family:Montserrat,Arial,sans-serif!impo
 @media(max-width:900px){.industry-logo-wall,.industry-more-companies ul{grid-template-columns:repeat(2,minmax(0,1fr))}.industry-logo-item,.industry-more-companies li{min-height:145px}}
 @media(max-width:680px){.industry-logo-wall,.industry-more-companies ul{grid-template-columns:1fr}.industry-logo-wall{padding:1px;margin-bottom:30px}.industry-logo-item,.industry-more-companies li{min-height:108px}.industry-logo-item{padding:20px}.industry-logo-caption strong,.industry-more-companies a{font-size:13px}.industry-more-companies{margin:-30px 0 30px}}
 
-/* The supplied deputy leadership composite already contains its finished layout. */
+/* Keep the supplied leadership artwork intact while exposing each portrait as its own movable card. */
 .deputy-leadership-banner{display:block;width:100%;height:auto}
 .leadership-principals-art{display:block;width:100%;height:auto;margin:0 auto}
+.principal-desktop-grid{display:grid;width:min(100%,860px);grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;justify-content:center;gap:clamp(34px,6vw,116px);margin:0 auto}
+.principal-desktop-card,.deputy-desktop-card{width:100%;aspect-ratio:.66;background-color:#f1f2f1;background-image:var(--leader-art);background-repeat:no-repeat;background-size:560% auto;background-position:var(--leader-position);overflow:hidden}
+.deputy-desktop-grid{display:grid;width:min(100%,1660px);grid-template-columns:repeat(4,minmax(0,1fr));align-items:start;gap:clamp(18px,3vw,58px);margin:0 auto}
+@media(max-width:900px){.deputy-desktop-grid{width:min(100%,760px);grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 18px}.principal-desktop-grid{width:min(100%,720px);gap:24px}}
 @media(min-width:901px){.industry-hotels-page .industry-logo-wall{grid-template-columns:repeat(4,minmax(0,1fr))}.industry-mining-page .industry-logo-wall{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:900px){.industry-hotels-page .industry-logo-wall,.industry-mining-page .industry-logo-wall{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){.industry-hotels-page .industry-logo-wall,.industry-mining-page .industry-logo-wall{grid-template-columns:1fr}}
@@ -894,6 +898,7 @@ html{overflow-x:clip}
   .leadership-clusters{padding:24px 16px 40px!important}
   .leadership-clusters-wrap{gap:17px!important}
   .leadership-clusters-label{font-size:13px!important}
+  .principal-desktop-grid,.deputy-desktop-grid{display:none!important}
   .deputy-leadership-banner{display:none!important}
   .deputy-mobile-grid{display:grid!important;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}
   .deputy-mobile-card{
