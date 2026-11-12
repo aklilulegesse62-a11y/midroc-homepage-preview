@@ -1212,3 +1212,13 @@ body.has-brand-intro{overflow:hidden}
 @media(max-width:680px){
   #about-hero-eyebrow,#about-hero-title,#about-hero-description,#about-hero-about-link,#about-hero-leadership-link,#about-hero-brochure{translate:0 0!important}
 }
+
+/* Final cursor-edited placements for the About Our Story text. */
+@media(min-width:681px){
+  #about-story-eyebrow{translate:23.8px 0!important}
+  #about-story-title{translate:21.5px -1.5px!important}
+  #about-story-paragraph-1,#about-story-paragraph-2,#about-story-paragraph-3{translate:0 0!important}
+}
+@media(max-width:680px){
+  #about-story-eyebrow,#about-story-title,#about-story-paragraph-1,#about-story-paragraph-2,#about-story-paragraph-3{translate:0 0!important}
+}
