@@ -37,3 +37,5 @@
 }
 @media(max-width:340px){.contact-industry-actions{flex-wrap:wrap}.contact-industry-email{flex-basis:100%;white-space:normal}}
 @media(min-width:681px){.contact-industry-hero h1{translate:33.8px -3.8px!important}}
+@media(min-width:681px){#contact-details{translate:-24.6px 0!important}}
+@media(max-width:680px){#contact-details{translate:0 0!important}}

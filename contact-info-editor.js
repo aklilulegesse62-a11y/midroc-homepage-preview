@@ -11,7 +11,7 @@
     { key: 'phone', label: 'Phone', element: details.children[2] },
     { key: 'industries', label: 'Industries link', element: details.children[3] }
   ].filter((item) => item.element);
-  const prefix = 'midroc-contact-info-v1:';
+  const prefix = 'midroc-contact-info-v2:';
   const phone = matchMedia('(max-width: 680px)');
   const view = () => phone.matches ? 'phone' : 'desktop';
   const storageKey = (key, size = view()) => `${prefix}${size}:${key}`;
