@@ -10,7 +10,7 @@
   ].map((item) => ({ ...item, element: document.querySelector(item.selector) })).filter((item) => item.element);
   if (!definitions.length) return;
 
-  const prefix = 'midroc-history-hero-text-v2:';
+  const prefix = 'midroc-history-hero-text-v3:';
   const phone = matchMedia('(max-width: 680px)');
   const view = () => phone.matches ? 'phone' : 'desktop';
   const storageKey = (target, size = view()) => `${prefix}${size}:${target}`;

@@ -1183,6 +1183,18 @@ body.has-brand-intro{overflow:hidden}
   .hero-h{translate:12px 5.6px!important}
 }
 
+/* Final cursor-edited placements for each history hero text block. */
+@media(min-width:681px){
+  #history-hero-eyebrow{translate:-19.2px -2.3px!important}
+  #history-hero-title{translate:-23.8px -3px!important}
+  #history-hero-description{translate:-21.5px 0!important}
+  #history-hero-about-link{translate:-20.8px 0!important}
+  #history-hero-brochure{translate:0 0!important}
+}
+@media(max-width:680px){
+  #history-hero-eyebrow,#history-hero-title,#history-hero-description,#history-hero-about-link,#history-hero-brochure{translate:0 0!important}
+}
+
 @media(min-width:681px){
   .about-story.section-pad{padding-top:68px!important;padding-bottom:68px!important}
 }
