@@ -11,16 +11,13 @@
   ].map((item) => ({ ...item, element: document.querySelector(item.selector) })).filter((item) => item.element);
   if (!definitions.length) return;
 
-  const prefix = 'midroc-about-hero-text-v2:';
-  const legacyPrefix = 'midroc-about-headline-v1:';
+  const prefix = 'midroc-about-hero-text-v3:';
   const phone = matchMedia('(max-width: 680px)');
   const view = () => phone.matches ? 'phone' : 'desktop';
   const storageKey = (key, size = view()) => `${prefix}${size}:${key}`;
   const read = (key, size = view()) => {
     try {
-      const saved = localStorage.getItem(storageKey(key, size));
-      const legacy = key === 'headline' ? localStorage.getItem(legacyPrefix + size) : null;
-      const value = JSON.parse(saved || legacy || '{"x":0,"y":0}');
+      const value = JSON.parse(localStorage.getItem(storageKey(key, size)) || '{"x":0,"y":0}');
       return { x: Number(value.x) || 0, y: Number(value.y) || 0 };
     } catch { return { x: 0, y: 0 }; }
   };

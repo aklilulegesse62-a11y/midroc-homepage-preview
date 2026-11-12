@@ -1198,3 +1198,17 @@ body.has-brand-intro{overflow:hidden}
 @media(min-width:681px){
   .about-story.section-pad{padding-top:68px!important;padding-bottom:68px!important}
 }
+
+
+/* Final cursor-edited placements for the About hero text blocks. */
+@media(min-width:681px){
+  #about-hero-eyebrow{translate:13.8px .8px!important}
+  #about-hero-title{translate:10px -1.5px!important}
+  #about-hero-description{translate:13.8px -.8px!important}
+  #about-hero-about-link{translate:-19.2px -1.5px!important}
+  #about-hero-leadership-link{translate:-13.8px 0!important}
+  #about-hero-brochure{translate:0 0!important}
+}
+@media(max-width:680px){
+  #about-hero-eyebrow,#about-hero-title,#about-hero-description,#about-hero-about-link,#about-hero-leadership-link,#about-hero-brochure{translate:0 0!important}
+}
