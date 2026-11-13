@@ -267,10 +267,10 @@ if (newsSearch || newsLanguage) {
   const intro = document.querySelector('[data-brand-intro]');
   if (!intro) return;
 
-  const logo = intro.querySelector('.brand-intro-fallback');
+  const video = intro.querySelector('video');
   const skip = intro.querySelector('[data-brand-intro-skip]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const seenKey = 'midrocBrandRevealSeenV2';
+  const seenKey = 'midrocBrandRevealSeenV3';
   const forceIntro = new URLSearchParams(window.location.search).get('intro') === '1';
   let alreadySeen = false;
   try { alreadySeen = sessionStorage.getItem(seenKey) === '1'; } catch {}
@@ -285,14 +285,13 @@ if (newsSearch || newsLanguage) {
   document.body.classList.add('has-brand-intro');
 
   let dismissed = false;
-  let finishTimer = 0;
-  let safetyTimer = 0;
+  let fallbackTimer = 0;
   const enterSite = () => {
     if (dismissed) return;
     dismissed = true;
-    window.clearTimeout(finishTimer);
-    window.clearTimeout(safetyTimer);
+    window.clearTimeout(fallbackTimer);
     try { sessionStorage.setItem(seenKey, '1'); } catch {}
+    video?.pause();
     pageParts.forEach((element) => { element.inert = false; });
     document.body.classList.remove('has-brand-intro');
     intro.classList.add('is-exiting');
@@ -300,9 +299,21 @@ if (newsSearch || newsLanguage) {
   };
 
   skip?.addEventListener('click', enterSite, { once: true });
-  logo?.addEventListener('animationend', () => {
-    finishTimer = window.setTimeout(enterSite, 1400);
+  video?.addEventListener('playing', () => {
+    window.clearTimeout(fallbackTimer);
+    fallbackTimer = 0;
+    intro.classList.remove('is-fallback');
+    intro.classList.add('is-playing');
   }, { once: true });
-  safetyTimer = window.setTimeout(enterSite, 6000);
+  video?.addEventListener('ended', enterSite, { once: true });
+  const showFallback = () => {
+    if (dismissed || intro.classList.contains('is-playing')) return;
+    intro.classList.add('is-fallback');
+    if (!fallbackTimer) fallbackTimer = window.setTimeout(enterSite, 1500);
+  };
+  video?.addEventListener('error', showFallback, { once: true });
+  window.setTimeout(showFallback, 8000);
   skip?.focus({ preventScroll: true });
+  const playback = video?.play();
+  if (playback && typeof playback.catch === 'function') playback.catch(showFallback);
 })();

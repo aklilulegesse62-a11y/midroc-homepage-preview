@@ -982,13 +982,16 @@ body.has-brand-intro{overflow:hidden}
 .brand-intro-skip:hover,.brand-intro-skip:focus-visible{background:#fff;color:#26382f}
 @media(max-width:680px){.brand-intro-content{gap:22px;padding:72px 24px 48px}.brand-intro-copy{max-width:520px;font-size:clamp(27px,8vw,38px)}.brand-intro-skip{top:14px;right:14px;bottom:auto}}
 @media(max-height:650px){.brand-intro-content{gap:14px;padding-top:52px;padding-bottom:28px}.brand-intro-copy{font-size:clamp(24px,2vw,38px)}}
-/* Match the transparent, compact logo reveal across desktop and mobile. */
+/* Keep the phone-sized logo visible until the WebM reveal is ready. */
 .brand-intro-media{position:relative;display:grid;place-items:center;width:min(24vw,300px);max-height:24vh;aspect-ratio:3/1}
-.brand-intro-fallback{grid-area:1/1;display:block;width:72%;height:72%;object-fit:contain;opacity:0;clip-path:inset(0 100% 0 0);transform:translateY(8px) scale(.96);animation:brand-mark-reveal 1.55s cubic-bezier(.2,.7,.2,1) .15s forwards}
-@keyframes brand-mark-reveal{to{opacity:1;clip-path:inset(0);transform:translateY(0) scale(1)}}
+.brand-intro-fallback,.brand-intro-video{grid-area:1/1;display:block;width:72%;height:72%;object-fit:contain}
+.brand-intro-fallback{opacity:1;transition:opacity .32s ease}
+.brand-intro-video{width:100%;height:100%;max-height:none;opacity:0;background:transparent;transition:opacity .32s ease}
+.brand-intro.is-playing .brand-intro-video{opacity:1}
+.brand-intro.is-playing .brand-intro-fallback{opacity:0}
+@media(max-width:680px){.brand-intro-video{width:100%;height:100%}}
 @media(max-width:680px){.brand-intro-media{width:min(62vw,290px);max-height:22vh}}
 @media(max-height:650px){.brand-intro-media{width:min(24vw,280px);max-height:19vh}}
-@media(prefers-reduced-motion:reduce){.brand-intro-fallback{opacity:1;clip-path:none;transform:none;animation:none}}
 
 /* Mobile layout fixes: keep navigation readable and separate copy from image panels. */
 @media(max-width:900px){
