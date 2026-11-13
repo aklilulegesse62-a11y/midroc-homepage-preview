@@ -604,12 +604,12 @@ h1 em,h2 em,h3 em,h4 em,h5 em,h6 em{font-family:Montserrat,Arial,sans-serif!impo
 .business-overview-grid .cluster-card>strong{position:relative;z-index:1;color:#243c34!important;transition:color .28s ease!important}
 .business-overview-grid .cluster-card:before{position:absolute!important;inset:0!important;z-index:-2!important;display:block!important;content:""!important;background-size:cover!important;background-position:center!important;opacity:0!important;transform:scale(1.04)!important;transition:opacity .35s ease,transform .55s ease!important}
 .business-overview-grid .cluster-card:after{position:absolute!important;inset:0!important;z-index:-1!important;display:block!important;content:""!important;background:linear-gradient(0deg,rgba(15,45,36,.82),rgba(15,45,36,.18))!important;opacity:0!important;transition:opacity .3s ease!important}
-.business-overview-grid .cluster-card:nth-child(1):before{background-image:url("assets/business-1.jpg")!important}
-.business-overview-grid .cluster-card:nth-child(2):before{background-image:url("assets/business-5.jpg")!important}
-.business-overview-grid .cluster-card:nth-child(3):before{background-image:url("assets/business-6.jpg")!important}
-.business-overview-grid .cluster-card:nth-child(4):before{background-image:url("assets/business-2.jpg")!important}
-.business-overview-grid .cluster-card:nth-child(5):before{background-image:url("assets/business-4.jpg")!important}
-.business-overview-grid .cluster-card:nth-child(6):before{background-image:url("assets/business-3.jpg")!important}
+.business-overview-grid .cluster-card:nth-child(1):before{background-image:url("assets/industry-agriculture-new.jpg")!important}
+.business-overview-grid .cluster-card:nth-child(2):before{background-image:url("assets/industry-manufacturing-new.jpg")!important}
+.business-overview-grid .cluster-card:nth-child(3):before{background-image:url("assets/industry-mining-new.jpg")!important}
+.business-overview-grid .cluster-card:nth-child(4):before{background-image:url("assets/industry-commerce-new.jpg")!important}
+.business-overview-grid .cluster-card:nth-child(5):before{background-image:url("assets/industry-hotels-new.jpg")!important}
+.business-overview-grid .cluster-card:nth-child(6):before{background-image:url("assets/industry-construction-new.jpg")!important}
 .business-overview-grid .cluster-card:hover:before,.business-overview-grid .cluster-card:focus-visible:before{opacity:1!important;transform:scale(1)!important}
 .business-overview-grid .cluster-card:hover:after,.business-overview-grid .cluster-card:focus-visible:after{opacity:1!important}
 .business-overview-grid .cluster-card:hover>strong,.business-overview-grid .cluster-card:focus-visible>strong{color:#fff!important}
