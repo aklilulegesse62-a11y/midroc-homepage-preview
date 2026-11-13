@@ -285,9 +285,11 @@ if (newsSearch || newsLanguage) {
   document.body.classList.add('has-brand-intro');
 
   let dismissed = false;
+  let fallbackTimer = 0;
   const enterSite = () => {
     if (dismissed) return;
     dismissed = true;
+    window.clearTimeout(fallbackTimer);
     try { sessionStorage.setItem(seenKey, '1'); } catch {}
     video?.pause();
     pageParts.forEach((element) => { element.inert = false; });
@@ -298,14 +300,16 @@ if (newsSearch || newsLanguage) {
 
   skip?.addEventListener('click', enterSite, { once: true });
   video?.addEventListener('playing', () => {
+    window.clearTimeout(fallbackTimer);
+    fallbackTimer = 0;
     intro.classList.remove('is-fallback');
     intro.classList.add('is-playing');
   }, { once: true });
   video?.addEventListener('ended', enterSite, { once: true });
   const showFallback = () => {
-    if (dismissed) return;
+    if (dismissed || intro.classList.contains('is-playing')) return;
     intro.classList.add('is-fallback');
-    window.setTimeout(enterSite, 1500);
+    if (!fallbackTimer) fallbackTimer = window.setTimeout(enterSite, 1500);
   };
   video?.addEventListener('error', showFallback, { once: true });
   window.setTimeout(showFallback, 8000);

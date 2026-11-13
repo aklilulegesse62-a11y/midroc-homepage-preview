@@ -984,11 +984,12 @@ body.has-brand-intro{overflow:hidden}
 .brand-intro-skip:hover,.brand-intro-skip:focus-visible{background:#fff;color:#26382f}
 @media(max-width:680px){.brand-intro-content{gap:22px;padding:72px 24px 48px}.brand-intro-video{width:min(62vw,290px);max-height:22vh}.brand-intro-copy{max-width:520px;font-size:clamp(27px,8vw,38px)}.brand-intro-skip{top:14px;right:14px;bottom:auto}}
 @media(max-height:650px){.brand-intro-content{gap:14px;padding-top:52px;padding-bottom:28px}.brand-intro-video{width:min(28vw,320px);max-height:19vh}.brand-intro-copy{font-size:clamp(24px,2vw,38px)}}
-/* Avoid showing the static logo poster before the reveal video begins. */
+/* Keep a visible logo in place while the reveal video loads. */
 .brand-intro-media{position:relative;display:grid;place-items:center;width:min(32vw,380px);max-height:24vh;aspect-ratio:3/1}
 .brand-intro-video{grid-area:1/1;width:100%;height:100%;max-height:none;opacity:0;transition:opacity .32s ease}
-.brand-intro-fallback{grid-area:1/1;display:block;width:64%;height:64%;object-fit:contain;opacity:0;transition:opacity .32s ease}
+.brand-intro-fallback{grid-area:1/1;display:block;width:64%;height:64%;object-fit:contain;opacity:1;transition:opacity .32s ease}
 .brand-intro.is-playing .brand-intro-video{opacity:1}
+.brand-intro.is-playing .brand-intro-fallback{opacity:0}
 .brand-intro.is-fallback .brand-intro-fallback{opacity:1}
 @media(max-width:680px){.brand-intro-media{width:min(62vw,290px);max-height:22vh}}
 @media(max-height:650px){.brand-intro-media{width:min(28vw,320px);max-height:19vh}}
