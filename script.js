@@ -267,7 +267,7 @@ if (newsSearch || newsLanguage) {
   const intro = document.querySelector('[data-brand-intro]');
   if (!intro) return;
 
-  const video = intro.querySelector('video');
+  const logo = intro.querySelector('.brand-intro-fallback');
   const skip = intro.querySelector('[data-brand-intro-skip]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const seenKey = 'midrocBrandRevealSeenV2';
@@ -285,13 +285,14 @@ if (newsSearch || newsLanguage) {
   document.body.classList.add('has-brand-intro');
 
   let dismissed = false;
-  let fallbackTimer = 0;
+  let finishTimer = 0;
+  let safetyTimer = 0;
   const enterSite = () => {
     if (dismissed) return;
     dismissed = true;
-    window.clearTimeout(fallbackTimer);
+    window.clearTimeout(finishTimer);
+    window.clearTimeout(safetyTimer);
     try { sessionStorage.setItem(seenKey, '1'); } catch {}
-    video?.pause();
     pageParts.forEach((element) => { element.inert = false; });
     document.body.classList.remove('has-brand-intro');
     intro.classList.add('is-exiting');
@@ -299,22 +300,9 @@ if (newsSearch || newsLanguage) {
   };
 
   skip?.addEventListener('click', enterSite, { once: true });
-  video?.addEventListener('playing', () => {
-    window.clearTimeout(fallbackTimer);
-    fallbackTimer = 0;
-    intro.classList.remove('is-fallback');
-    intro.classList.add('is-playing');
+  logo?.addEventListener('animationend', () => {
+    finishTimer = window.setTimeout(enterSite, 1400);
   }, { once: true });
-  video?.addEventListener('ended', enterSite, { once: true });
-  const showFallback = () => {
-    if (dismissed || intro.classList.contains('is-playing')) return;
-    intro.classList.add('is-fallback');
-    if (!fallbackTimer) fallbackTimer = window.setTimeout(enterSite, 1500);
-  };
-  video?.addEventListener('error', showFallback, { once: true });
-  window.setTimeout(showFallback, 8000);
+  safetyTimer = window.setTimeout(enterSite, 6000);
   skip?.focus({ preventScroll: true });
-
-  const playback = video?.play();
-  if (playback && typeof playback.catch === 'function') playback.catch(showFallback);
 })();
