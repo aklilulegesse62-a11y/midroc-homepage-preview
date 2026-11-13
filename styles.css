@@ -977,11 +977,11 @@ body.has-brand-intro{overflow:hidden}
 .brand-intro{background:#f5f6f2;background-image:radial-gradient(ellipse at center,rgba(56,106,89,.08),rgba(245,246,242,0) 54%)}
 .brand-intro-content{min-height:100svh;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,2.4vh,30px);padding:64px 24px 48px;text-align:center}
 .brand-intro-welcome{margin:0;color:#386a59;font-size:clamp(10px,.86vw,14px);font-weight:700;letter-spacing:.22em;line-height:1.4;text-transform:uppercase}
-.brand-intro-copy{max-width:760px;margin:0;color:#1e2925;font-size:clamp(27px,2.45vw,48px);font-weight:500;letter-spacing:-.035em;line-height:1.2}
+.brand-intro-copy{max-width:760px;margin:0;color:#386a59;font-size:clamp(10px,.86vw,14px);font-weight:500;letter-spacing:-.035em;line-height:1.2}
 .brand-intro-skip{top:18px;right:18px;bottom:auto;gap:8px;min-width:86px;justify-content:center;padding:10px 13px;border:1px solid rgba(38,56,47,.12);border-radius:999px;background:rgba(255,255,255,.72);color:#617069;font-size:10px;letter-spacing:.09em}
 .brand-intro-skip:hover,.brand-intro-skip:focus-visible{background:#fff;color:#26382f}
-@media(max-width:680px){.brand-intro-content{gap:22px;padding:72px 24px 48px}.brand-intro-copy{max-width:520px;font-size:clamp(27px,8vw,38px)}.brand-intro-skip{top:14px;right:14px;bottom:auto}}
-@media(max-height:650px){.brand-intro-content{gap:14px;padding-top:52px;padding-bottom:28px}.brand-intro-copy{font-size:clamp(24px,2vw,38px)}}
+@media(max-width:680px){.brand-intro-content{gap:22px;padding:72px 24px 48px}.brand-intro-copy{max-width:520px}.brand-intro-skip{top:14px;right:14px;bottom:auto}}
+@media(max-height:650px){.brand-intro-content{gap:14px;padding-top:52px;padding-bottom:28px}}
 /* Keep the phone-sized logo visible until the WebM reveal is ready. */
 .brand-intro-media{position:relative;display:grid;place-items:center;width:min(24vw,300px);max-height:24vh;aspect-ratio:3/1}
 .brand-intro-fallback,.brand-intro-video{grid-area:1/1;display:block;width:72%;height:72%;object-fit:contain}
