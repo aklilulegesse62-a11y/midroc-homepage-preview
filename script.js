@@ -270,7 +270,7 @@ if (newsSearch || newsLanguage) {
   const video = intro.querySelector('video');
   const skip = intro.querySelector('[data-brand-intro-skip]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const seenKey = 'midrocBrandRevealSeenV1';
+  const seenKey = 'midrocBrandRevealSeenV2';
   const forceIntro = new URLSearchParams(window.location.search).get('intro') === '1';
   let alreadySeen = false;
   try { alreadySeen = sessionStorage.getItem(seenKey) === '1'; } catch {}
